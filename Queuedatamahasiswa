@@ -1,0 +1,60 @@
+//convert java Array ke Queue
+// Kelomppok 1 - 0
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
+
+public class    QueuedataMahasiswa {
+    public static void main(String[] args) {
+        Queue<String> mahasiswaQueue = new LinkedList<>();
+        Queue<Integer> nilaiQueue = new LinkedList<>();
+        Scanner sc = new Scanner(System.in);
+        String inputData;
+        int total = 0;
+
+        do {
+            System.out.print("Masukkan nama Mahasiswa: ");
+            String nama = sc.nextLine();
+            mahasiswaQueue.add(nama);
+
+            System.out.print("Masukkan nilai: ");
+            int nilai = sc.nextInt();
+            nilaiQueue.add(nilai);
+            sc.nextLine();
+
+            System.out.print("Input data lagi? (y/n): ");
+            inputData = sc.nextLine();
+
+        } while (inputData.equalsIgnoreCase("y"));
+        sc.close();
+
+        System.out.println();
+
+        System.out.println("Jumlah Data: " + mahasiswaQueue.size());
+        
+        int i = 1;
+        for (String mahasiswa : mahasiswaQueue) {
+            System.out.println("___________");
+            System.out.println("Urutan ke : " + i++);
+            System.out.println("Nama Mahasiswa: " + mahasiswa);
+        }
+
+        System.out.println();
+        System.out.println("Daftar Mahasiswa: ");
+        System.out.println("======================================");
+        System.out.println("No\tNama\tNilai\tStatus");
+        System.out.println("======================================");
+
+        i = 1;
+        for (String mahasiswa : mahasiswaQueue) {
+            int nilai = nilaiQueue.poll();
+            String status = (nilai >= 99) ? "Lulus" : " Tidak Lulus";
+            System.out.println(i++ + "\t" + mahasiswa + "\t" + nilai + "\t" + status);
+            total += nilai;
+        }
+
+        System.out.println();
+        System.out.println("Total Nilai : " + total);
+        System.out.println("Rata-Rata : " + total / mahasiswaQueue.size());
+    }
+}
